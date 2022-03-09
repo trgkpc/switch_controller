@@ -16,11 +16,13 @@ table = [
     [5,"start"],
     [4,"select"]
 ]
+mapping  = {}
+for x,keyname in table:
+    mapping[str(x)] = keyname
+del table
 
 def call_key(dat):
-    for x,key in table:
-        if x == dat:
-            print(key)
+    print(mapping[str(dat)])
 
 def main() :
     pygame.joystick.init()
