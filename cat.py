@@ -1,5 +1,5 @@
 import pygame
-from pygame.locals import *
+import pygame.locals
 import time
 
 table = [
@@ -13,16 +13,15 @@ table = [
     [[0,1], "left"],
     [[-1,0], "down"],
     [[0,-1], "right"],
+    [[0, 0], "neutral"],
     [5,"start"],
     [4,"select"]
 ]
-mapping  = {}
-for x,keyname in table:
-    mapping[str(x)] = keyname
-del table
 
 def call_key(dat):
-    print(mapping[str(dat)])
+    for x,key in table:
+        if x == dat:
+            print(key)
 
 def main() :
     pygame.joystick.init()
@@ -39,7 +38,7 @@ def main() :
 
         # イベント処理
         for e in eventlist:
-            if e.type == QUIT:
+            if e.type == pygame.locals.QUIT:
                 return
             if e.type == pygame.locals.JOYHATMOTION:
                 x, y = joystick0.get_hat(0)
